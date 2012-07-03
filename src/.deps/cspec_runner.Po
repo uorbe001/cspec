@@ -1,0 +1,10 @@
+cspec_runner.o cspec_runner.o: cspec_runner.c ../inc/cspec.h \
+  ../inc/cspec_config.h ../inc/cspec_private.h ../inc/cspec_output.h
+
+../inc/cspec.h:
+
+../inc/cspec_config.h:
+
+../inc/cspec_private.h:
+
+../inc/cspec_output.h:

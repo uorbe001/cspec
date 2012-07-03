@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" name="array_t* array_new(size_t element_size)" tests="3">
+    <testcase name="returns not-NULL pointer" assertions="1">
+    </testcase>
+    <testcase name="returns initialized struct" assertions="4">
+    </testcase>
+    <testcase name="returns NULL if element size is 0" assertions="1">
+    </testcase>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="void array_delete(array_t** const array)" tests="3">
+    <testcase name="destruct struct" assertions="1">
+    </testcase>
+    <testcase name="do nothing if pointer is NULL" assertions="1">
+    </testcase>
+    <testcase name="do nothing if *array is NULL" assertions="1">
+    </testcase>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="int array_add(array_t* const array, const void* const data)" tests="2">
+    <testcase name="add an element into the array" assertions="9">
+    </testcase>
+    <testcase name="returns 1 if either pointer is NULL" assertions="2">
+    </testcase>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="void* array_get_element(array_t* const array, size_t idx)" tests="2">
+    <testcase name="return NULL if idx is over bound" assertions="1">
+    </testcase>
+    <testcase name="return NULL if pointer is NULL" assertions="1">
+    </testcase>
+  </testsuite>
+</testsuites>

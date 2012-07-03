@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="shift-jis" ?>
+<testsuites>
+  <testsuite errors="0" failures="1" name="descr1" tests="2">
+    <testcase name="it1-1" assertions="1">
+    </testcase>
+    <testcase name="it1-2" assertions="1">
+      <failure message="Failed" type="">
+fname:12: assertion2
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="descr2" tests="1">
+    <testcase name="it2-1" assertions="0">
+    </testcase>
+  </testsuite>
+</testsuites>
