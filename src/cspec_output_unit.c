@@ -44,7 +44,7 @@ void startDescribeFunUnit( const char *descr)
 {
 	//printf("Unit testing %s:\n\t", descr);
 	strcpy(unit.description, descr);
-	unit.nbPassed = 0;
+	//unit.nbPassed = 0;
 	unit.nbTotal  = 0;
 }
 
@@ -67,15 +67,20 @@ void evalFunUnit(const char*filename, int line_number, const char*assertion, int
 	{
 		coloredPrintf(CSPEC_COLOR_GREEN, ".");
 		unit.nbPassed++;
+		if (unit.nbPassed % 95 == 0) {
+			printf("\n");
+		}
 	}
 	else
 	{
+		unit.nbPassed = 0;
 		coloredPrintf(CSPEC_COLOR_RED, "\n\n<<%s>>\n :::Failed:::\t%s\t[%s line %d]\n\n", unit.description, assertion, filename, line_number);
 	}
 }
 
 void pendingFunUnit(const char* reason)
 {
+	unit.nbPassed = 0;
 	coloredPrintf(CSPEC_COLOR_YELLOW, "\n\n<<%s>>\n :::Pending:::\t(%s)\n\n", unit.description, reason);
 }
 
