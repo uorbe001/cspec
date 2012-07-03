@@ -7,6 +7,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
  #ifdef _WIN32
 #	include <windows.h>
 #endif
@@ -18,6 +19,7 @@ typedef struct
 
 	int nbPassed;
 	int nbTotal;
+	char description[200];
 
 } CSpecOutputUnitStruct;
 
@@ -30,7 +32,6 @@ typedef enum
 
 static CSpecOutputUnitStruct unit;
 
-
 /* private functions */
 static void coloredPrintf(CSpec_Color color, const char* format, ...);
 #ifdef _WIN32
@@ -41,7 +42,8 @@ static int getAnsiColorCode(CSpec_Color color);
 
 void startDescribeFunUnit( const char *descr)
 {
-	printf("Unit testing %s:\n\t", descr);
+	//printf("Unit testing %s:\n\t", descr);
+	strcpy(unit.description, descr);
 	unit.nbPassed = 0;
 	unit.nbTotal  = 0;
 }
@@ -50,11 +52,11 @@ void endDescribeFunUnit( )
 {
 	if(unit.nbPassed == unit.nbTotal)
 	{
-		coloredPrintf(CSPEC_COLOR_GREEN, "\n\tAll tests Passed (%d)\n\n", unit.nbTotal);
+		//coloredPrintf(CSPEC_COLOR_GREEN, "\n\tAll tests Passed (%d)\n\n", unit.nbTotal);
 	}
 	else
 	{
-		coloredPrintf(CSPEC_COLOR_RED, "\n\tPassed %d tests out of %d\n\n", unit.nbPassed, unit.nbTotal);
+		//coloredPrintf(CSPEC_COLOR_RED, "\n\tPassed %d tests out of %d\n\n", unit.nbPassed, unit.nbTotal);
 	}
 }
 
@@ -68,13 +70,13 @@ void evalFunUnit(const char*filename, int line_number, const char*assertion, int
 	}
 	else
 	{
-		coloredPrintf(CSPEC_COLOR_RED, "\n\t:::Failed:::\t%s\n\t%s(line %d)\n", assertion, filename, line_number);
+		coloredPrintf(CSPEC_COLOR_RED, "\n\n<<%s>>\n :::Failed:::\t%s\t[%s line %d]\n\n", unit.description, assertion, filename, line_number);
 	}
 }
 
 void pendingFunUnit(const char* reason)
 {
-	coloredPrintf(CSPEC_COLOR_YELLOW, "\n\tPending: %s\n", reason);
+	coloredPrintf(CSPEC_COLOR_YELLOW, "\n\n<<%s>>\n :::Pending:::\t(%s)\n\n", unit.description, reason);
 }
 
 CSpecOutputStruct* CSpec_NewOutputUnit()
